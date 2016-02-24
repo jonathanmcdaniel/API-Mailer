@@ -1,0 +1,10 @@
+<Files .htaccess>
+ order allow,deny
+ deny from all
+</Files>
+<Limit POST OPTIONS>
+ order deny,allow
+ allow from all
+ allow from .*domain\.com
+ allow from .*domain\.com
+</Limit>
