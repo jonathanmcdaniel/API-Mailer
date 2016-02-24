@@ -1,8 +1,9 @@
 <?php
 require './PHPMailer/PHPMailerAutoload.php';
+require 'MailerConfig.php';
 
 /**
-*
+* Class to simplify and unify sending emails
 */
 class Mailer
 {
@@ -11,32 +12,38 @@ class Mailer
   {
   }
 
+  /**
+  * Function to send an email
+  * @param  String $subject         Subject Line of the email
+  * @param  String $body            Plain text email body
+  * @param  String $htmlBody      HTML formatted version of email body
+  * @param  String $toAddress    Email address of recipient
+  * @param  String $fromName    Name to display for the sender
+  * @return boolean                      True/False of whether email sent successfully
+  */
   function sendMail($subject, $body, $htmlBody, $toAddress, $fromName){
     $mail = new PHPMailer;
 
-    //$mail->SMTPDebug = 2;                               // Enable verbose debug output
+    $mail->isSMTP();
+    $mail->Host = MailerConfig::MAIL_SERVER;
+    $mail->SMTPAuth = MailerConfig::MAIL_SERVER_SMTP_AUTH;
+    $mail->Username = MailerConfig::SENDING_ACCOUNT_EMAIL_ADDRESS;
+    $mail->Password = MailerConfig::SENDING_ACCOUNT_PASSWORD;
+    $mail->SMTPSecure = MailerConfig::MAIL_SERVER_SECURITY_TYPE;
+    $mail->Port = MailerConfig::MAIL_SERVER_PORT;
 
-    $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'smtp.domain.com';  // Specify main and backup SMTP servers
-    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'user@domain.com';                 // SMTP username
-    $mail->Password = 'password';                           // SMTP password
-    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 465;                                    // TCP port to connect to
+    $mail->setFrom(MailerConfig::SENDING_ACCOUNT_EMAIL_ADDRESS, $fromName);
+    $mail->addAddress($toAddress);
 
-    $mail->setFrom('user@domain.com', $fromName);
-    $mail->addAddress($toAddress);               // Name is optional
-
-    $mail->isHTML(true);                                  // Set email format to HTML
-
+    $mail->isHTML(true);
     $mail->Subject = $subject;
     $mail->Body = $htmlBody;
     $mail->AltBody = $body;
 
     if(!$mail->send()) {
-      return 0;
+      return false;
     } else {
-      return 1;
+      return true;
     }
   }
 

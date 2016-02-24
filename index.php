@@ -50,7 +50,7 @@ if ($requestMethod === "POST")
 
   $sendSuccess = $mailer->sendMail($subject, $body, $htmlBody, $toAddress, $fromName);
 
-  if ($sendSuccess == 1){
+  if ($sendSuccess === true){
     http_response_code(200);
   } else {
     echo "An error occured while sending the message";
