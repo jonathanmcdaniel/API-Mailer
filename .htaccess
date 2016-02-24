@@ -4,7 +4,7 @@
 </Files>
 <Limit POST OPTIONS>
  order deny,allow
- allow from all
+ deny from all
  allow from .*domain\.com
  allow from .*domain\.com
 </Limit>

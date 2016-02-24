@@ -35,14 +35,20 @@ if ($requestMethod === "POST")
     http_response_code(500);
     return;
   }
+  if (!isset($data["fromName"])) {
+    echo "'fromName' must be provided in the post body.";
+    http_response_code(500);
+    return;
+  }
   $subject = $data['subject'];
   $body = $data['body'];
   $htmlBody = $data['htmlBody'];
   $toAddress = $data['toAddress'];
+  $fromName = $data['fromName'];
 
   $mailer = new Mailer();
-  
-  $sendSuccess = $mailer->sendMail($subject, $body, $htmlBody, $toAddress);
+
+  $sendSuccess = $mailer->sendMail($subject, $body, $htmlBody, $toAddress, $fromName);
 
   if ($sendSuccess == 1){
     http_response_code(200);
