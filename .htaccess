@@ -9,6 +9,6 @@
 <Limit POST OPTIONS>
  order deny,allow
  deny from all
- allow from .*domain\.com
+ allow from localhost
  allow from .*domain\.com
 </Limit>

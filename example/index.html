@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>API-Mailer Example</title>
+</head>
+<body>
+  <form class="contact-form">
+    <input type="text" id="email" value="" placeholder="Email"><br/>
+    <input type="text" id="name" value="" placeholder="Name"><br/>
+    <input type="text" id="message" value="" placeholder="Message"><br/>
+    <input type="submit" value="Send Message">
+  </form>
+  <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+  <script>
+  $(document).ready(function(){
+    $(".contact-form").on("submit", function(e) {
+      e.preventDefault();
+      var email = $("#email").val();
+      var name = $("#name").val();
+      var message = $("#message").val();
+
+      var fromName = "Contact form client name"
+      var toAddress = "name@example.com";
+      var subject = "My Message Subject";
+      var body = "Email: "+email+"\nName: "+name+"\nMessage: "+message;
+      var htmlBody = "<b>Email:</b> "+email+"<br/><b>Name:</b> "+name+"<br/><b>Message: </b>"+message;
+
+      var messageBody = {};
+      messageBody.fromName = fromName;
+      messageBody.toAddress = toAddress;
+      messageBody.subject = subject;
+      messageBody.body = body;
+      messageBody.htmlBody = htmlBody;
+
+      $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/",
+        data: JSON.stringify(messageBody),
+        contentType: "application/json; charset=utf-8",
+        dataType: "text",
+        success: function(data){},
+        failure: function(errMsg) {}
+      })
+      .done(function(msg){alert("message sent");})
+      .fail(function(errMsg){alert(errMsg.responseText);});
+    });
+  });
+  </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<Files .htaccess>
+ order allow,deny
+ deny from all
+</Files>
+<Limit HEAD PATCH POST OPTIONS GET PUT DELETE>
+ order deny,allow
+ allow from all
+</Limit>

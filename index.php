@@ -16,28 +16,28 @@ if ($requestMethod === "POST")
   $data = json_decode(file_get_contents('php://input'), true);
 
   if (!isset($data["subject"])) {
-    echo "'subject' must be provided in the post body.";
     http_response_code(500);
+    echo "'subject' must be provided in the post body.";
     return;
   }
   if (!isset($data["body"])) {
-    echo "'body' must be provided in the post body.";
     http_response_code(500);
+    echo "'body' must be provided in the post body.";
     return;
   }
   if (!isset($data["htmlBody"])) {
-    echo "'htmlBody' must be provided in the post body.";
     http_response_code(500);
+    echo "'htmlBody' must be provided in the post body.";
     return;
   }
   if (!isset($data["toAddress"])) {
-    echo "'toAddress' must be provided in the post body.";
     http_response_code(500);
+    echo "'toAddress' must be provided in the post body.";
     return;
   }
   if (!isset($data["fromName"])) {
-    echo "'fromName' must be provided in the post body.";
     http_response_code(500);
+    echo "'fromName' must be provided in the post body.";
     return;
   }
   $subject = $data['subject'];
