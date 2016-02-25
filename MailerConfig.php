@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Configuration for setup with your mail server
+ */
 class MailerConfig
 {
   const SENDING_ACCOUNT_EMAIL_ADDRESS = "";

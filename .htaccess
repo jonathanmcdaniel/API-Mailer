@@ -2,6 +2,10 @@
  order allow,deny
  deny from all
 </Files>
+<Limit HEAD PATCH GET PUT DELETE>
+ order deny,allow
+ deny from all
+</Limit>
 <Limit POST OPTIONS>
  order deny,allow
  deny from all

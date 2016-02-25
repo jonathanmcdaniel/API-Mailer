@@ -14,12 +14,12 @@ class Mailer
 
   /**
   * Function to send an email
-  * @param  String $subject         Subject Line of the email
-  * @param  String $body            Plain text email body
-  * @param  String $htmlBody      HTML formatted version of email body
-  * @param  String $toAddress    Email address of recipient
-  * @param  String $fromName    Name to display for the sender
-  * @return boolean                      True/False of whether email sent successfully
+  * @param  String $subject Subject Line of the email
+  * @param  String $body  Plain text email body
+  * @param  String $htmlBody  HTML formatted version of email body
+  * @param  String $toAddress Email address of recipient
+  * @param  String $fromName  Name to display for the sender
+  * @return boolean True/False of whether email sent successfully
   */
   function sendMail($subject, $body, $htmlBody, $toAddress, $fromName){
     $mail = new PHPMailer;
