@@ -8,6 +8,14 @@ Due to the endpoint being unauthenticated, you will need other security measures
 ### Use
 To use API-Mailer, hit the endpoint where ever that may be on your web server with a JSON Post. The body of the request should contain 'subject', 'body', 'htmlBody, 'toAddress', and 'fromName'.
 
+### Setup and Configuration
+1. Clone or download the repo
+2. Create a new directory on your webserver such as "mail" so you have example.com/mail/
+3. Copy the contents of the repo into the new "mail" directory
+4. Modify MailerConfig.php so that it matches the credentials of the mail server you will be connecting to
+5. Modify the .htaccess file to whitelist certain domains that you want to be able to access the mailer
+6. Once these steps are complete, the url of example.com/mail/ can be hit with the following HTTP POST JSON body
+
 ### Sample JSON Request Body
 ```JSON
 {
