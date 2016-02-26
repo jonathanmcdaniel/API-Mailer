@@ -19,11 +19,11 @@ To use API-Mailer, hit the endpoint where ever that may be on your web server wi
 ### Sample JSON Request Body
 ```JSON
 {
-  "subject": "",
-  "body": "",
-  "htmlBody": "",
-  "toAddress": "",
-  "fromName": ""
+  "subject": "My Subject Line",
+  "body": "Hey there!",
+  "htmlBody": "<b>Hey There!</b>",
+  "toAddress": "recipient@example.com",
+  "fromName": "Sender Name"
 }
 ```
 
